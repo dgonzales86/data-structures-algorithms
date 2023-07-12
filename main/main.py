@@ -1,6 +1,6 @@
 import algo.hash
 import util
-from algo.graph import Graph
+from algo.graph import Graph, dijkstra
 from algo.hash import HashTable
 from util import extract_csv_hash
 import threading
@@ -30,11 +30,11 @@ distance_table = "util/Distance_Table.csv"
 # print(my_hash_table.lookup_item(27).address)
 
 my_graph = Graph()
-
-my_graph.add_vertex('A')
-my_graph.add_vertex('B')
-my_graph.add_vertex('C')
-my_graph.add_vertex('D')
+#
+# my_graph.add_vertex('A')
+# my_graph.add_vertex('B')
+# my_graph.add_vertex('C')
+# my_graph.add_vertex('D')
 
 # my_graph.add_edge('A', 'B', 10)
 # my_graph.add_edge('A', 'C', 20)
@@ -49,11 +49,11 @@ my_graph.add_vertex('D')
 
 my_graph = Graph()
 
-my_graph.csv_parse_graph(address_file,distance_table)
+my_graph.csv_parse_graph(address_file)
 
-my_graph.populate_graph()
+dijkstra(my_graph,)
 
-my_graph.print_distance_graph()
+# my_graph.print_distance_graph()
 
 # ###############################loading graph###################################
 
