@@ -1,3 +1,8 @@
+from enum import Enum
+
+from algo.graph import Graph
+
+
 class Package:
     def __init__(self, package_id, address, city, state, zip_code, delivery_deadline, mass, package_status):
         self.package_id = package_id
@@ -12,6 +17,4 @@ class Package:
 
 
 
-
-    #def distance_between(self, package1, package2):
 
