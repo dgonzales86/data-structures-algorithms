@@ -49,12 +49,9 @@ def extract_csv(path, package_hash_table):
             zip_code = column[4]
             delivery_deadline = column[5]
             mass = column[6]
-            package_status = column[7]
-            package = Package(package_id, address, city, state, zip_code, delivery_deadline, mass,
-                              package_status)
+            package = Package(package_id, address, city, state, zip_code, delivery_deadline, mass)
 
-            value = package
-
-            package_hash_table.insert_item(int(package_id), value)
+            # print(package)
+            package_hash_table.insert_item(int(package_id), package)
 
         return package_hash_table
