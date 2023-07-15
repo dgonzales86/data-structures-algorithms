@@ -1,52 +1,49 @@
 import algo.hash
-import model.trucks
-from algo import distance_array
-from algo.distance_array import Distance_Array
 from algo.graph import Graph
-
 from algo.hash import HashTable
-
+from model import package
+from model.driver import Truck_Driver
+from model.trucks import DeliveryTruck
 import threading
 
+driver1 = Truck_Driver(1, 'Wayne')
+driver2 = Truck_Driver(2, 'Garth')
+
+truck1 = DeliveryTruck(1, 1)
+truck2 = DeliveryTruck(2, 2)
+truck3 = DeliveryTruck(3, None)
+
+# creates hash table object
 my_hash_table = HashTable()
 
 # parses .csv file and populates hash map
 package_file = "util/packageDestCSV.csv"
 algo.hash.extract_csv(package_file, my_hash_table)
 
+# variable for string path to address file
 address_file = "util/addresses.csv"
-distance_table = 'util/Distance_Table_2.csv'
-# distance_table = "util/Distance_Table.csv"
 
-# for i in range(1, 40):
-#     print(my_hash_table.lookup_item(i).address)
-#
-# my_graph = Graph()
-#
-# my_graph.print_distance_graph()
-#
-# my_graph = Graph()
-#
-# my_graph.csv_parse_graph(address_file)
-# print(my_graph.distance_graph)
-# start_vertex = '4001 South 700 East'
-#
-#
-# def distance_from(address1, address2):
-#     distance = address2 - address1
-#     return distance
-#
-#
-# truck1 = model.trucks.DeliveryTruck(my_hash_table.lookup_item(1))
-#
-# truck1.load_truck(1)
-# truck1.load_truck(22)
-# truck1.load_truck(32)
-# print(truck1.packages)
-# truck1.unload_truck(22)
-#
-# print(my_hash_table.lookup_item(5))
-distance = Distance_Array()
-Distance_Array.parse_distance(distance, distance_table)
+# variable for string path to distance table file
+distance_table = "util/Distance_Table.csv"
 
-print()
+for i in range(1, 41):
+    print(my_hash_table.lookup_item(i))
+
+# creates address graph object
+address_graph = Graph()
+
+address_graph.csv_parse_graph(address_file)
+#print(address_graph.distance_graph)
+
+truck1.load_truck(my_hash_table.lookup_item(1))
+truck1.load_truck(my_hash_table.lookup_item(2))
+truck1.print_truck_status()
+
+
+
+# example of how to access package objects
+# for package in truck1.loaded_packages:
+#     print(package.address)
+
+
+

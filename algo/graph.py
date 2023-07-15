@@ -427,3 +427,5 @@ class Graph:
         self.add_edge('600 E 900 South', '600 E 900 South', 0)
         self.add_edge('600 E 900 South', '6351 South 900 East', 8.3)
         self.add_edge('6351 South 900 East', '6351 South 900 East', 0)
+
+

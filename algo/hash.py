@@ -36,6 +36,8 @@ class HashTable:
         for i, val in enumerate(self.__map):
             print(i, ": ", val)
 
+    def values(self):
+        return self.__map.__str__()
 
 def extract_csv(path, package_hash_table):
     with open(path, 'r') as file:

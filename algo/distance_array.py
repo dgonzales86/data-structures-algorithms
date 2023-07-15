@@ -13,4 +13,8 @@ class Distance_Array:
 
     def get_address_index(self, address):
         count = 0
-        for row in self.distance
+        for row in self.distance:
+            if row[0] == address:
+                return count
+            count += 1
+        return count
