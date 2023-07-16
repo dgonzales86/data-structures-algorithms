@@ -35,11 +35,46 @@ address_graph = Graph()
 address_graph.csv_parse_graph(address_file)
 #print(address_graph.distance_graph)
 
-truck1.load_truck(my_hash_table.lookup_item(1))
-truck1.load_truck(my_hash_table.lookup_item(2))
+# loading truck 1
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+truck1.load_truck(my_hash_table.lookup_item())
+
+
 truck1.print_truck_status()
 
+# loading truck 2
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
+truck2.load_truck(my_hash_table.lookup_item())
 
+truck2.print_truck_status()
 
 # example of how to access package objects
 # for package in truck1.loaded_packages:
