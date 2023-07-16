@@ -17,4 +17,13 @@ class Distance_Array:
             if row[0] == address:
                 return count
             count += 1
-        return count
+        return -1
+
+    def find_distance_for_address(self, address_start, address_end):
+        start_index = self.get_address_index(address_start)
+        end_index = self.get_address_index(address_end)
+        distance = self.distance[start_index][end_index+1]
+        if distance == '':
+            distance = self.distance[end_index][start_index+1]
+
+        return distance
