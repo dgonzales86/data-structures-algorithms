@@ -2,11 +2,35 @@ import queue
 
 import algo.hash
 from algo.distance_array import Distance_Array
-from collections import deque
+
+
+class DeliveryTruck:
+    def __init__(self, truck_id, driver_id):
+        self.truck_id = truck_id
+        self.driver_id = driver_id
+        self.loaded_packages = []
+        self.miles_per_hour = None
+        self.time_in_route = None
+        self.distance_traveled = None
+        self.delivery_route = queue.Queue()
+
+    def load_truck(self, package):
+        self.loaded_packages.append(package)
+
+    # def deliver_package(self, truck):
+    #     while len(truck.loaded_packages) > 0:
+    #         for truck.loaded_packages
+
+    def print_truck_status(self):
+        package_str = [str(package) for package in self.loaded_packages]
+        print(self.truck_id, ':', self.driver_id, ':', package_str)
+
+
+def time_travel(distance_traveled):
+    mph = 18
 
 
 def package_delivery(distance_array, package_list, hash_table):
-
     start_address = '4001 South 700 East'
     closest = 999
     next_address = None
@@ -32,26 +56,3 @@ def package_delivery(distance_array, package_list, hash_table):
 
     return package_list
 
-
-class DeliveryTruck:
-    def __init__(self, truck_id, driver_id):
-        self.truck_id = truck_id
-        self.driver_id = driver_id
-        self.loaded_packages = []
-        self.miles_per_hour = None
-        self.time_in_route = None
-        self.distance_traveled = None
-        self.delivery_route = queue.Queue()
-
-    def load_truck(self, package):
-        self.loaded_packages.append(package)
-
-    # def deliver_package(self, truck):
-    #     while len(truck.loaded_packages) > 0:
-    #         for truck.loaded_packages
-
-    def print_truck_status(self):
-        package_str = [str(package) for package in self.loaded_packages]
-        print(self.truck_id, ':', self.driver_id, ':', package_str)
-
-#  def unload_truck(self):
