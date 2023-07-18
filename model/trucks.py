@@ -5,37 +5,32 @@ from algo.distance_array import Distance_Array
 from collections import deque
 
 
-def nearest_address(distance_array, package_list):
-    new_array = []
-    unvisited = []
+def package_delivery(distance_array, package_list, hash_table):
+
     start_address = '4001 South 700 East'
     closest = 999
-    next_closest = None
+    next_address = None
+    package_clone = None
+    total_distance = 0.0
 
-    for package in package_list:
-        new_array.append(package)
-    while len(new_array) > 0:
+    while len(package_list) > 0:
         for package in package_list:
-            package_to_remove = package
             next_closest = Distance_Array.find_distance_for_address(distance_array, start_address, package.address)
             if float(next_closest) < float(closest):
                 closest = next_closest
-               # start_address = package.address
-                new_array.remove(package_to_remove)
-                print(closest, package.address)
-            else:
-                unvisited.append(package_to_remove)
-        for package in unvisited:
-            package_to_remove = package
+                package_clone = package
+                next_address = package.address
+        total_distance = total_distance + float(closest)
+        print(closest, package_clone.address, ' total distance: ', total_distance)
 
+        if package_clone in package_list:
+            package_list.remove(package_clone)
+        hash_table.lookup_item(int(package_clone.package_id)).package_status = 'Delivered'
 
+        start_address = next_address
+        closest = 999
 
-
-    # address = package_list.package.address(i)
-    # Distance_Array.find_distance_for_address(start_address, address)
-    # if package_list.address < closest:
-    #     closest = package_list.address
-    return closest
+    return package_list
 
 
 class DeliveryTruck:

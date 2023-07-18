@@ -3,7 +3,7 @@ from algo.graph import Graph
 from algo.hash import HashTable
 from model import package
 from model.driver import Truck_Driver
-from model.trucks import DeliveryTruck, nearest_address
+from model.trucks import DeliveryTruck, package_delivery
 from algo.distance_array import Distance_Array
 from algo import algorithm
 import threading
@@ -35,13 +35,11 @@ distance_table = "util/Distance_Table_2.csv"
 # address_graph = Graph()
 # parse csv file into graph into vertex for graph
 # address_graph.csv_parse_graph(address_file)
-#print(address_graph.distance_graph)
+# print(address_graph.distance_graph)
 
 # creates 2d array
 distance_array = Distance_Array()
 distance_array.parse_distance(distance_table)
-
-
 
 # loading truck 1
 truck1.load_truck(my_hash_table.lookup_item(14))
@@ -94,4 +92,13 @@ start_vertex = '4001 South 700 East'
 # for package in truck1.loaded_packages:
 #     print(package.address)
 
-nearest_address(distance_array, truck2.loaded_packages)
+print(truck2.loaded_packages)
+package_delivery(distance_array, truck2.loaded_packages, my_hash_table)
+print(truck2.loaded_packages)
+
+print(truck1.loaded_packages)
+package_delivery(distance_array, truck1.loaded_packages, my_hash_table)
+print(truck1.loaded_packages)
+
+for i in range(1, 42):
+    print(my_hash_table.lookup_item(i).package_status)
