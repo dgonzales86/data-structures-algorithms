@@ -1,6 +1,6 @@
 from enum import Enum
 
-from algo.graph import Graph
+from data_structures.graph import Graph
 
 
 class Package:

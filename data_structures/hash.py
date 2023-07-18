@@ -1,6 +1,6 @@
 """HashTable is the custom hash table implementation class.
    __init__ : initializes instance of HashTable with 40 empty elements
-   hash_fx : custom hash function
+   hash_fx : initializes size of zero,
    """
 
 import csv

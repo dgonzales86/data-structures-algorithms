@@ -1,26 +1,31 @@
-import algo.hash
-from algo.graph import Graph
-from algo.hash import HashTable
-from model import package
+import datetime
+
+
+import data_structures.hash
+from data_structures.graph import Graph
+from data_structures.hash import HashTable
+from model import package, trucks
 from model.driver import Truck_Driver
-from model.trucks import DeliveryTruck, package_delivery
-from algo.distance_array import Distance_Array
-from algo import algorithm
+from model.trucks import DeliveryTruck
+from data_structures.distance_array import Distance_Array
+
 import threading
 
 driver1 = Truck_Driver(1, 'Wayne')
 driver2 = Truck_Driver(2, 'Garth')
 
-truck1 = DeliveryTruck(1, 1)
-truck2 = DeliveryTruck(2, 2)
-truck3 = DeliveryTruck(3, None)
+truck1 = DeliveryTruck(1, 1, datetime.datetime.now())
+truck2 = DeliveryTruck(2, 2, datetime.datetime.now())
+truck3 = DeliveryTruck(3, None, datetime.datetime.now().replace(hour=11, minute=0))
+
+print(truck1.current_time())
 
 # creates hash table object
 my_hash_table = HashTable()
 
 # parses .csv file and populates hash map
 package_file = "util/packageDestCSV.csv"
-algo.hash.extract_csv(package_file, my_hash_table)
+data_structures.hash.extract_csv(package_file, my_hash_table)
 
 # variable for string path to address file
 address_file = "util/addresses.csv"
@@ -93,12 +98,16 @@ start_vertex = '4001 South 700 East'
 #     print(package.address)
 
 print(truck2.loaded_packages)
-package_delivery(distance_array, truck2.loaded_packages, my_hash_table)
+trucks.DeliveryTruck.package_delivery(truck2, distance_array, my_hash_table)
 print(truck2.loaded_packages)
 
 print(truck1.loaded_packages)
-package_delivery(distance_array, truck1.loaded_packages, my_hash_table)
+trucks.DeliveryTruck.package_delivery(truck1, distance_array, my_hash_table)
 print(truck1.loaded_packages)
 
-for i in range(1, 42):
+for i in range(1, 41):
     print(my_hash_table.lookup_item(i).package_status)
+
+print(int(truck1.distance_traveled + truck2.distance_traveled))
+
+print(truck2.time_in_route)
