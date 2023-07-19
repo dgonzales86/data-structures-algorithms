@@ -10,10 +10,9 @@ class DeliveryTruck:
         self.loaded_packages = []
         self.miles_per_hour = 18
         self.time_in_route = datetime.timedelta(0, 0)
-        self.time_of_departure = time_of_departure.timedelta(0,0)
+        self.time_of_departure = time_of_departure
         self.distance_traveled = 0
         self.delivery_route = queue.Queue()
-
 
     def load_truck(self, package):
         self.loaded_packages.append(package)
@@ -42,6 +41,13 @@ class DeliveryTruck:
         closest = 999
         next_address = None
         package_clone = None
+
+        for hash_table.package in self.loaded_packages:
+            hash_table.package_status = 'In Route'
+            print(hash_table.package_status)
+
+
+
 
         while len(self.loaded_packages) > 0:
             for package in self.loaded_packages:

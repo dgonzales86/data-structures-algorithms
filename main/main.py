@@ -14,9 +14,9 @@ import threading
 driver1 = Truck_Driver(1, 'Wayne')
 driver2 = Truck_Driver(2, 'Garth')
 
-truck1 = DeliveryTruck(1, 1, datetime.datetime.now())
-truck2 = DeliveryTruck(2, 2, datetime.datetime.now())
-truck3 = DeliveryTruck(3, None, datetime.datetime.now().replace(hour=11, minute=0))
+truck1 = DeliveryTruck(1, 1, datetime.timedelta(hours=8, minutes=0))
+truck2 = DeliveryTruck(2, 2, datetime.timedelta(hours=9, minutes=5))
+truck3 = DeliveryTruck(3, None, datetime.timedelta(hours=9, minutes=5))
 
 print(truck1.current_time())
 
