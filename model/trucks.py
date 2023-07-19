@@ -44,10 +44,6 @@ class DeliveryTruck:
 
         for hash_table.package in self.loaded_packages:
             hash_table.package_status = 'In Route'
-            print(hash_table.package_status)
-
-
-
 
         while len(self.loaded_packages) > 0:
             for package in self.loaded_packages:
@@ -65,6 +61,7 @@ class DeliveryTruck:
             if package_clone in self.loaded_packages:
                 self.loaded_packages.remove(package_clone)
                 hash_table.lookup_item(int(package_clone.package_id)).package_status = 'Delivered'
+                hash_table.lookup_item(int(package_clone.package_id)).time_delivered = self.current_time()
 
             start_address = next_address
             closest = 999

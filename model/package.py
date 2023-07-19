@@ -15,14 +15,6 @@ class Package:
         self.package_status = "At Hub"
         self.time_delivered = None
 
-
-
     def __str__(self):
         return f'{self.package_id} {self.address} {self.city} {self.state} {self.zip_code} {self.delivery_deadline} ' \
                f'{self.mass} {self.package_status} {self.time_delivered}'
-
-
-
-
-
-

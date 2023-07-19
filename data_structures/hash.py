@@ -39,6 +39,7 @@ class HashTable:
     def values(self):
         return self.__map.__str__()
 
+
 def extract_csv(path, package_hash_table):
     with open(path, 'r') as file:
         csv_reader = csv.reader(file)

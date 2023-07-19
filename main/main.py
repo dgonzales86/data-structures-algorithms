@@ -1,6 +1,5 @@
 import datetime
 
-
 import data_structures.hash
 from data_structures.graph import Graph
 from data_structures.hash import HashTable
@@ -98,12 +97,14 @@ start_vertex = '4001 South 700 East'
 #     print(package.address)
 
 print(truck2.loaded_packages)
-trucks.DeliveryTruck.package_delivery(truck2, distance_array, my_hash_table)
+thread2 = trucks.DeliveryTruck.package_delivery(truck2, distance_array, my_hash_table)
 print(truck2.loaded_packages)
 
 print(truck1.loaded_packages)
-trucks.DeliveryTruck.package_delivery(truck1, distance_array, my_hash_table)
+thread1 = trucks.DeliveryTruck.package_delivery(truck1, distance_array, my_hash_table)
 print(truck1.loaded_packages)
+
+
 
 for i in range(1, 41):
     print(my_hash_table.lookup_item(i).package_status)
@@ -111,3 +112,6 @@ for i in range(1, 41):
 print(int(truck1.distance_traveled + truck2.distance_traveled))
 
 print(truck2.time_in_route)
+
+for i in range(1, 41):
+    print(my_hash_table.lookup_item(i).time_delivered)
