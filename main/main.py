@@ -1,5 +1,5 @@
 import datetime
-
+import argparse
 import data_structures.hash
 from data_structures.graph import Graph
 from data_structures.hash import HashTable
@@ -97,11 +97,11 @@ start_vertex = '4001 South 700 East'
 #     print(package.address)
 
 print(truck2.loaded_packages)
-thread2 = trucks.DeliveryTruck.package_delivery(truck2, distance_array, my_hash_table)
+trucks.DeliveryTruck.package_delivery(truck2, distance_array, my_hash_table)
 print(truck2.loaded_packages)
 
 print(truck1.loaded_packages)
-thread1 = trucks.DeliveryTruck.package_delivery(truck1, distance_array, my_hash_table)
+trucks.DeliveryTruck.package_delivery(truck1, distance_array, my_hash_table)
 print(truck1.loaded_packages)
 
 
@@ -109,9 +109,41 @@ print(truck1.loaded_packages)
 for i in range(1, 41):
     print(my_hash_table.lookup_item(i).package_status)
 
-print(int(truck1.distance_traveled + truck2.distance_traveled))
+
 
 print(truck2.time_in_route)
 
 for i in range(1, 41):
     print(my_hash_table.lookup_item(i).time_delivered)
+
+
+# CLI -------------------
+
+option = 10
+while option != 7:
+    print('=' * 60)
+    print('WGUPS Package Delivery')
+    print('=' * 60)
+    print('Total Milage: ', int(truck1.distance_traveled + truck2.distance_traveled))
+    print('-' * 60)
+    print("1. All Package Statuses")
+    print("2: Specific Package Status")
+    print("3. All Package Statuses For Specific Time")
+    print('7. Exit')
+    option = int(input('Select an option: '))
+    if option == 1:
+        for i in range(1, 41):
+            print(my_hash_table.lookup_item(i))
+    elif option == 2:
+        pkg_id = int(input('Enter a package id: '))
+        print(my_hash_table.lookup_item(pkg_id))
+    elif option == 3:
+        entered_time = input('Enter time to check package status HH:MM: ')
+        hour,minute = entered_time.split(':')
+        query_time = datetime.timedelta(hours=int(hour), minutes=int(minute))
+        for i in range(1, 41):
+            print(my_hash_table.lookup_item(i).package_status_by_time(query_time))
+
+
+
+

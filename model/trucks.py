@@ -15,6 +15,7 @@ class DeliveryTruck:
         self.delivery_route = queue.Queue()
 
     def load_truck(self, package):
+        package.truck_start_time = self.time_of_departure
         self.loaded_packages.append(package)
 
     def print_truck_status(self):
@@ -23,11 +24,9 @@ class DeliveryTruck:
 
     def time_travel(self, distance_traveled):
         mph = self.miles_per_hour
-        time_traveled = (distance_traveled / mph)
 
-        hours = int(time_traveled)
-        minutes = int((time_traveled - hours) * 60)
-        self.time_in_route = datetime.timedelta(hours=hours, minutes=minutes)
+        self.time_in_route = datetime.timedelta(hours=distance_traveled/self.miles_per_hour)
+
         return self.time_in_route
 
     def current_time(self):
