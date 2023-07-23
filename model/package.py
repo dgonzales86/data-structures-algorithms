@@ -1,6 +1,4 @@
-from enum import Enum
-
-from data_structures.graph import Graph
+import datetime
 
 
 class Package:
@@ -14,18 +12,20 @@ class Package:
         self.mass = mass
         self.package_status = "At Hub"
         self.time_delivered = None
-        self.truck_start_time = None
+        self.truck_start_time = datetime.timedelta(hours=0, minutes=0)
+        self.time_loaded = None
 
     def __str__(self):
-        return f'{self.package_id} {self.address} {self.city} {self.state} {self.zip_code} {self.delivery_deadline} ' \
-               f'{self.mass} {self.package_status} {self.time_delivered}'
+        return f'{self.package_id} | {self.address} | {self.city} | {self.state} | {self.zip_code} | {self.delivery_deadline} | ' \
+               f'{self.mass} | {self.package_status} | {self.time_delivered}'
 
     def package_status_by_time(self, query_time):
+
         if query_time >= self.time_delivered:
             time_status = 'Delivered'
         elif query_time <= self.truck_start_time:
             time_status = 'At Hub'
         else:
             time_status = 'In Route'
-        return f'{self.package_id} {self.address} {self.city} {self.state} {self.zip_code} {self.delivery_deadline} ' \
-               f'{self.mass} {time_status} {self.time_delivered}'
+        return f'{self.package_id} | {self.address} | {self.city} | {self.state} | {self.zip_code} | {self.delivery_deadline} | ' \
+               f'{self.mass} | {time_status} | {self.time_delivered}'

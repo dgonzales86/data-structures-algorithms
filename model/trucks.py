@@ -14,9 +14,10 @@ class DeliveryTruck:
         self.distance_traveled = 0
         self.delivery_route = queue.Queue()
 
-    def load_truck(self, package):
+    def load_truck(self, package, time_loaded):
         package.truck_start_time = self.time_of_departure
         self.loaded_packages.append(package)
+        package.time_loaded = time_loaded
 
     def print_truck_status(self):
         package_str = [str(package) for package in self.loaded_packages]
@@ -25,13 +26,12 @@ class DeliveryTruck:
     def time_travel(self, distance_traveled):
         mph = self.miles_per_hour
 
-        self.time_in_route = datetime.timedelta(hours=distance_traveled/self.miles_per_hour)
+        self.time_in_route = datetime.timedelta(hours=distance_traveled / self.miles_per_hour)
 
         return self.time_in_route
 
     def current_time(self):
         current_time = self.time_of_departure + self.time_travel(self.distance_traveled)
-        print('The current time of day is: ', current_time)
         return current_time
 
     # delivery algorithm O(M * N)
@@ -40,6 +40,8 @@ class DeliveryTruck:
         closest = 999
         next_address = None
         package_clone = None
+
+        print('Truck ', self.truck_id, ' delivery started at: ', self.current_time())
 
         for hash_table.package in self.loaded_packages:
             hash_table.package_status = 'In Route'
@@ -53,16 +55,21 @@ class DeliveryTruck:
                     next_address = package.address
             self.distance_traveled = self.distance_traveled + float(closest)
 
-            print(closest, package_clone.address, ' total distance: ', self.distance_traveled)
+            print('Next closet address is: ', closest, ' miles. ', package_clone.address, ' total distance: ',
+                  self.distance_traveled, ' miles')
             print('time traveled: ', self.time_travel(self.distance_traveled))
-            self.current_time()
-
+            
             if package_clone in self.loaded_packages:
                 self.loaded_packages.remove(package_clone)
                 hash_table.lookup_item(int(package_clone.package_id)).package_status = 'Delivered'
                 hash_table.lookup_item(int(package_clone.package_id)).time_delivered = self.current_time()
+                hash_table.lookup_item(int(package_clone.package_id)).truck_start_time = self.time_of_departure
 
             start_address = next_address
             closest = 999
-
+        last_stop = start_address
+        final_destination = '4001 South 700 East'
+        distance_back_to_hub = Distance_Array.find_distance_for_address(distance_array, last_stop, final_destination)
+        self.distance_traveled = self.distance_traveled + float(distance_back_to_hub)
+        print('Truck ', self.truck_id, ' route completed at: ', self.current_time())
         return self.loaded_packages
