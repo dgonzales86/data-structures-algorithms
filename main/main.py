@@ -1,3 +1,12 @@
+"""Main method:
+    Truck and driver objects initialized.
+    Hash table built and populated with package data.
+    2D array/list created and populated with distance data.
+    Truck objects loaded with package objects.
+    Package delivery algorithm ran for each truck.
+    Command line interface implemented.
+    """
+
 import datetime
 import data_structures.hash
 from data_structures.hash import HashTable
@@ -6,33 +15,33 @@ from model.driver import Truck_Driver
 from model.trucks import DeliveryTruck
 from data_structures.distance_array import Distance_Array
 
+# Initializes both truck drivers
 driver1 = Truck_Driver(1, 'Wayne')
 driver2 = Truck_Driver(2, 'Garth')
 
+# Initializes all 3 delivery trucks with truck id, driver id, and time of departure
 truck1 = DeliveryTruck(1, 1, datetime.timedelta(hours=8, minutes=0))
 truck2 = DeliveryTruck(2, 2, datetime.timedelta(hours=9, minutes=10))
 truck3 = DeliveryTruck(3, None, datetime.timedelta(hours=10, minutes=45))
 
-# print(truck1.current_time())
-
-# creates hash table object
+# Creates hash table object
 my_hash_table = HashTable()
 
-# parses .csv file and populates hash map
+# Parses .csv file and populates hash map
 package_file = "util/packageDestCSV.csv"
 data_structures.hash.extract_csv(package_file, my_hash_table)
 
-# variable for string path to address file
+# Variable for string path to address file
 address_file = "util/addresses.csv"
 
-# variable for string path to distance table file
+# Variable for string path to distance table file
 distance_table = "util/Distance_Table_2.csv"
 
-# creates 2d array
+# Creates 2d array
 distance_array = Distance_Array()
 distance_array.parse_distance(distance_table)
 
-# loading truck 1
+# Loading truck 1
 truck1.load_truck(my_hash_table.lookup_item(14), '06:00')
 truck1.load_truck(my_hash_table.lookup_item(15), '06:00')
 truck1.load_truck(my_hash_table.lookup_item(16), '06:00')
@@ -50,9 +59,7 @@ truck1.load_truck(my_hash_table.lookup_item(30), '06:00')
 truck1.load_truck(my_hash_table.lookup_item(31), '06:00')
 truck1.load_truck(my_hash_table.lookup_item(34), '06:00')
 
-# truck1.print_truck_status()
-
-# loading truck 2
+# Loading truck 2
 truck2.load_truck(my_hash_table.lookup_item(3), '06:00')
 truck2.load_truck(my_hash_table.lookup_item(18), '06:00')
 truck2.load_truck(my_hash_table.lookup_item(36), '06:00')
@@ -70,13 +77,11 @@ truck2.load_truck(my_hash_table.lookup_item(25), '09:08')
 truck2.load_truck(my_hash_table.lookup_item(27), '09:08')
 truck2.load_truck(my_hash_table.lookup_item(32), '09:08')
 
-# address correction
+# Address correction for package 9
 my_hash_table.lookup_item(9).address = '410 S State St'
 my_hash_table.lookup_item(9).zip_code = '84111'
 
-# loading truck 3
-
-
+# Loading truck 3
 truck3.load_truck(my_hash_table.lookup_item(2), '06:00')
 truck3.load_truck(my_hash_table.lookup_item(21), '06:00')
 truck3.load_truck(my_hash_table.lookup_item(22), '06:00')
@@ -86,30 +91,22 @@ truck3.load_truck(my_hash_table.lookup_item(24), '06:00')
 truck3.load_truck(my_hash_table.lookup_item(28), '09:20')
 truck3.load_truck(my_hash_table.lookup_item(9), '10:30')
 
-# delivering packages
+# Delivering packages for truck 1 and truck 2
 trucks.DeliveryTruck.package_delivery(truck1, distance_array, my_hash_table)
 trucks.DeliveryTruck.package_delivery(truck2, distance_array, my_hash_table)
 
-# truck driver swap
-
+# Following completion of truck 1's route, driver 1 exits truck 1 and boards truck 3
 truck1.driver_id = None
 truck3.driver_id = 1
 
-# final truck delivery
+# Truck 3 begins delivery route
 trucks.DeliveryTruck.package_delivery(truck3, distance_array, my_hash_table)
 
-
+# All packages are delivered
 print("Package Delivery Complete: ")
 
-for i in range(1, 41):
-    print(my_hash_table.lookup_item(i).package_status)
 
-print(truck2.time_in_route)
-
-for i in range(1, 41):
-    print(my_hash_table.lookup_item(i).time_delivered)
-
-# -------------------------------- CLI --------------------------------
+# -------------------------------- Command Line Interface --------------------------------
 
 option = 10
 while option != 7:

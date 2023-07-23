@@ -30,11 +30,12 @@ class DeliveryTruck:
 
         return self.time_in_route
 
+# returns
     def current_time(self):
         current_time = self.time_of_departure + self.time_travel(self.distance_traveled)
         return current_time
 
-    # delivery algorithm O(M * N)
+    # delivery algorithm: Nearest Neighbor Algorithm
     def package_delivery(self, distance_array, hash_table):
         start_address = '4001 South 700 East'
         closest = 999
@@ -58,7 +59,7 @@ class DeliveryTruck:
             print('Next closet address is: ', closest, ' miles. ', package_clone.address, ' total distance: ',
                   self.distance_traveled, ' miles')
             print('time traveled: ', self.time_travel(self.distance_traveled))
-            
+
             if package_clone in self.loaded_packages:
                 self.loaded_packages.remove(package_clone)
                 hash_table.lookup_item(int(package_clone.package_id)).package_status = 'Delivered'
