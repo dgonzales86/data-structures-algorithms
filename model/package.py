@@ -1,14 +1,11 @@
-"""Package class:
-    __init__ : package constructor
-    __str__ : returns string of package object
-    package_status_by_time : returns package status at specified time"""
-
 import datetime
 
 
 class Package:
 
     # Package object constructor
+    # Time complexity, O(1)
+    # Space complexity, O(1)
     def __init__(self, package_id, address, city, state, zip_code, delivery_deadline, mass):
         self.package_id = package_id
         self.address = address
@@ -27,7 +24,7 @@ class Package:
         return f'{self.package_id} | {self.address} | {self.city} | {self.state} | {self.zip_code} | ' \
                f'{self.delivery_deadline} | {self.mass} | {self.package_status} | {self.time_delivered}'
 
-# Returns package status using query time variable. Used within command line interface. Time complexity 0(1).
+    # Returns package status using query time variable. Used within command line interface. Time complexity 0(1).
     # Space complexity O(1)
     def package_status_by_time(self, query_time):
 

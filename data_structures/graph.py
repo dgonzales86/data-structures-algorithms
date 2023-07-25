@@ -1,10 +1,12 @@
-"""***** Class not used within project, but kept for possible future implementations *****
+"""
+***** Class not used within project, but kept for possible future implementations *****
 class Graph:
     add_vertex - adds a node/vertes to the graph
     add_edge - adds weighted edge between nodes
     delete_edge - removes edges between nodes
     delete_vertes - loops through edges between nodes, deletes them, and proceeds to delete self
-    print_distance_graph - prints graph's contents"""
+    print_distance_graph - prints graph's contents
+"""
 
 import csv
 

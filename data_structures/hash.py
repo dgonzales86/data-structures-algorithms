@@ -1,28 +1,27 @@
-"""HashTable is the custom hash table implementation class.
-   __init__ : Initializes instance of HashTable with 40 empty buckets
-   hash_fx : Hash method runs key through hash calculation to determine storage location.
-   insert_item: Method to insert item into hash table, uses hash method on specified key
-   """
-
 import csv
 from model.package import Package
 
 
 class HashTable:
 
-    # Initializes hash table with a default size of 40 buckets
+    # Hash table constructor with a default size of 40 buckets
+    # Time complexity of O(N) for the creation of a list of size N
+    # Space complexity O(N) for the space requirements of N buckets to store key-value pairs.
     def __init__(self, size=40):
         self.__map = [None] * size
 
     # Runs key through hash calculation to determine storage location
     # Time complexity, O(1) as will always be same number of operations for a given key.
+    # Space complexity, O(1) as the operation is fixed and uses constant space each time it is run and stores variables.
     def hash_fx(self, key):
         my_hash = 0
         my_hash = (key * 37) % len(self.__map)
         return my_hash
 
-    # Utilizes hash method on provided key to determine storage location of value.
+    # Utilizes hash method on provided key to determine storage location of value and appends to hash table.
     # Time complexity, O(1) as appending will take the same number of operations per item appended.
+    # Space complexity, O(1) as the space required for this method isn't dependent on the size of hash table
+    # and uses constant space each time method runs.
     def insert_item(self, key, value):
         key_hash = self.hash_fx(key)
         if self.__map[key_hash] is None:
@@ -32,7 +31,9 @@ class HashTable:
     # Returns contents of hash 'bucket' by a specified key.
     # Accounts for chaining by searching bucket using a for loop within a nested list.
     # Time complexity, O(1) as items are evenly distributed using hash function and can be retrieved by key with
-    # a constant number of operations.
+    # a constant number of operations as there are no collisions within this program. Note* if another hash
+    # method were implemented which led to several collisions, the worst case scenario for this method would be O(N).
+    # Space complexity, considered to be O(1) as the method does not depend on the number of elements in the hash table.
     def lookup_item(self, key):
         key_hash = self.hash_fx(key)
         container = self.__map[key_hash]
@@ -52,8 +53,9 @@ class HashTable:
 # Non-class method that is passed a path to csv file and a hash table object.
 # Utilizes python's csv reader to read and parse package information from provided csv file.
 # Stores parsed information into a package object and inserts into the hash table object.
-# Time complexity, O(M * N) as the while loop executes M times independently of the for loop, while the file has rows
-# to be read. The for loop executes N times independently of the while loop for each column in the csv file.
+# Time complexity, O(N * M) as the method depends on the number of columns, and rows in a given csv file.
+# Space complexity, O(M * N). Since the method's memory requirements are dependent on the number of rows and columns,
+# the method's space requirement grows in linear proportion to the number of columns and rows.
 def extract_csv(path, package_hash_table):
     with open(path, 'r') as file:
         csv_reader = csv.reader(file)
