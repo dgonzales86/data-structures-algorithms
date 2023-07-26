@@ -27,7 +27,7 @@ my_hash_table = HashTable()
 
 # Parses .csv file and populates hash map
 # Space and time complexity of package_file, O(1)
-# Space and time complexity of data_structures.hash.extract_csv() elaborated in hash.py
+# Space and time complexity of data_structures.hash.extract_csv(), O(M * N), further elaborated in hash.py
 package_file = "util/packageDestCSV.csv"
 data_structures.hash.extract_csv(package_file, my_hash_table)
 

@@ -53,7 +53,7 @@ class HashTable:
 # Non-class method that is passed a path to csv file and a hash table object.
 # Utilizes python's csv reader to read and parse package information from provided csv file.
 # Stores parsed information into a package object and inserts into the hash table object.
-# Time complexity, O(N * M) as the method depends on the number of columns, and rows in a given csv file.
+# Time complexity, O(M * N) as the method depends on the number of columns, and rows in a given csv file.
 # Space complexity, O(M * N). Since the method's memory requirements are dependent on the number of rows and columns,
 # the method's space requirement grows in linear proportion to the number of columns and rows.
 def extract_csv(path, package_hash_table):

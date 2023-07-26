@@ -74,6 +74,7 @@ class DeliveryTruck:
 
         print('Truck ', self.truck_id, ' delivery started at: ', self.current_time())
 
+        # O(N) time complexity, O(1) space complexity.
         for hash_table.package in self.loaded_packages:
             hash_table.package_status = 'In Route'
 
